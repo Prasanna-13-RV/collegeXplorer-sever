@@ -1,4 +1,6 @@
-const Dish = require("../../../modals/dish") 
+const Dish = require("../../../modals/dish")
+
+// {"dishDescription": "2asdgfasdfg", "dishImage": "342sdfg", "dishName": "dfghjdfghj56", "dishPrice": "7567", "isDishAvailable": false, "restaurant": "null"}
 
 // Create a new dish
 const createDish = async (req, res) => {
@@ -13,7 +15,8 @@ const createDish = async (req, res) => {
 		} = req.body
 		const newDish = new Dish({
 			dishName: dishName,
-			restaurant: restaurant,
+			// restaurant: restaurant,
+			restaurant: "658c1882a673027abd55a1ef",
 			dishDescription: dishDescription,
 			dishImage: dishImage,
 			dishPrice: dishPrice,
