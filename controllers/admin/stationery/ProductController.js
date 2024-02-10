@@ -15,8 +15,8 @@ const createStationeryProduct = async (req, res) => {
 		} = req.body
 		const newProduct = new StationeryProduct({
 			productName: productName,
-			// shopName: shopName,
-			shopName: "658c1882a673027abd55a1ef",
+			shopName: shopName,
+			// shopName: "65c64c914705d27e19b74a26",
 			productDescription: productDescription,
 			productImage: productImage,
 			productPrice: productPrice,

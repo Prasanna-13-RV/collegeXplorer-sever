@@ -51,7 +51,7 @@ const updateStationeryCart = async (req, res) => {
 			{ new: true }
 		)
 
-		// console.log("Updated cart:", updatedCart)
+		console.log("Updated cart:", updatedCart)
 		res.json(updatedCart)
 	} catch (error) {
 		console.error("Error updating cart:", error)
