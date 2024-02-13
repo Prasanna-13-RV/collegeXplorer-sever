@@ -12,6 +12,7 @@ const orderSchema = new mongoose.Schema({
 			quantity: { type: Number, default: 1 },
 		},
 	],
+	isOrderComplete: { type: Boolean, default: true },
 })
 
 const Order = mongoose.model("Order", orderSchema)

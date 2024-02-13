@@ -12,6 +12,7 @@ const stationeryOrderSchema = new mongoose.Schema({
 			quantity: { type: Number, default: 1 },
 		},
 	],
+	isOrderComplete: { type: Boolean, default: true },
 })
 
 const StationeryOrder = mongoose.model("StationeryOrder", stationeryOrderSchema)
