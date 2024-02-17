@@ -5,7 +5,7 @@ const {
 	getAllShops,
 	updateShop,
 	deleteShop,
-} = require("../../../controllers/admin/stationery/ShopController")
+} = require("../../../controllers/admin/food/ShopController")
 
 // Create a new shop
 router.post("/shop/insert", createShop)

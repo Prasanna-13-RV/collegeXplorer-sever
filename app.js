@@ -10,20 +10,12 @@ const dbConnect = require("./dbConnect")
 // routers
 // ADMIN
 // Food
-const restaurantRouter = require("./routes/admin/food/RestaurantRoute")
-const DishRouter = require("./routes/admin/food/DishRoute")
+const ShopRouter = require("./routes/admin/food/ShopRoute")
+const ProductRouter = require("./routes/admin/food/ProductRoute")
 const OrderRouter = require("./routes/admin/food/OrderRoute")
 const UserRouter = require("./routes/admin/food/UserRoute")
 const CartRouter = require("./routes/admin/food/CartRoute")
 
-// Stationery
-const StationeryShop = require("./routes/admin/stationery/ShopRoute")
-const StationeryProduct = require("./routes/admin/stationery/ProductRoute")
-const StationeryOrder = require("./routes/admin/stationery/OrderRoute")
-const StationeryCart = require("./routes/admin/stationery/CartRoute")
-
-// CLIENT
-const ApiRoute = require("./routes/client/food/ApiRoute")
 const morgan = require("morgan")
 
 dbConnect()
@@ -37,28 +29,15 @@ app.get("/api", (req, res) => {
 
 // ADMIN
 // Restaurant
-app.use("/api/admin", restaurantRouter)
-// Dish
-app.use("/api/admin", DishRouter)
+app.use("/api/admin", ShopRouter)
+// Product
+app.use("/api/admin", ProductRouter)
 // Order
 app.use("/api/admin", OrderRouter)
 // User
 app.use("/api/admin", UserRouter)
 // Cart
 app.use("/api/admin", CartRouter)
-
-// Stationery Cart
-app.use("/api/admin", StationeryCart)
-// Stationery Order
-app.use("/api/admin", StationeryOrder)
-// Stationery Product
-app.use("/api/admin", StationeryProduct)
-// Stationery Shop
-app.use("/api/admin", StationeryShop)
-
-// CLIENT
-// My API
-app.use("/api/client", ApiRoute)
 
 app.listen(process.env.PORT, () => {
 	console.log(`Server is running in ${process.env.PORT}`)

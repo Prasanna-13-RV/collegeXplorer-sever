@@ -7,7 +7,7 @@ const createCart = async (req, res) => {
 		const newCart = new Cart({
 			user: user,
 			items: items.map((item) => ({
-				dish: item.dishId,
+				product: item.productId,
 				quantity: item.quantity,
 			})),
 		})
@@ -24,7 +24,7 @@ const createCart = async (req, res) => {
 // Read all carts
 const getAllCarts = async (req, res) => {
 	try {
-		const carts = await Cart.find().populate("user").populate("items.dish")
+		const carts = await Cart.find().populate("user").populate("items.product")
 		// console.log("All carts:", carts)
 		res.json(carts)
 	} catch (error) {
@@ -42,7 +42,7 @@ const updateCart = async (req, res) => {
 			{
 				user: user,
 				items: items.map((item) => ({
-					dish: item.dishId,
+					product: item.productId,
 					quantity: item.quantity,
 				})),
 			},

@@ -7,7 +7,7 @@ const createOrder = async (req, res) => {
 		const newOrder = new Order({
 			user: user,
 			items: items.map((order) => ({
-				dish: order.dish,
+				product: order.product,
 				quantity: order.quantity,
 			})),
 		})
@@ -26,7 +26,7 @@ const getAllOrders = async (req, res) => {
 	try {
 		const orders = await Order.find()
 			.populate("user")
-			.populate("items.dish")
+			.populate("items.product")
 		// console.log("All orders:", orders)
 		res.json(orders)
 	} catch (error) {
@@ -44,7 +44,7 @@ const updateOrder = async (req, res) => {
 			{
 				user: user,
 				items: items.map((order) => ({
-					dish: order.dish,
+					product: order.product,
 					quantity: order.quantity,
 				})),
 			},

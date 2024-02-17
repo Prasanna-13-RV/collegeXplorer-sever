@@ -1,14 +1,14 @@
-const StationeryShop = require("../../../modals/stationery/stationeryShop")
+const Shop = require("../../../modals/shop")
 
 // Create a new shop
 const createShop = async (req, res) => {
 	try {
 		const { name, description, loc, products, isOpened } = req.body
-		const newShop = new StationeryShop({
+		const newShop = new Shop({
 			name: name,
 			description: description,
 			loc: loc,
-			products: products,
+			// products: products,
 			isOpened: isOpened,
 		})
 		const savedShop = await newShop.save()
@@ -22,7 +22,7 @@ const createShop = async (req, res) => {
 // Read all shops
 const getAllShops = async (req, res) => {
 	try {
-		const shops = await StationeryShop.find().populate("products")
+		const shops = await Shop.find().populate("products")
 		// console.log("All shops:", shops)
 		res.json(shops)
 	} catch (error) {
@@ -35,7 +35,7 @@ const updateShop = async (req, res) => {
 	try {
 		const { name, description, loc, products, isOpened } = req.body
 		const id = req.params.id
-		const updatedShop = await StationeryShop.findByIdAndUpdate(
+		const updatedShop = await Shop.findByIdAndUpdate(
 			id,
 			{
 				name: name,
@@ -57,7 +57,7 @@ const updateShop = async (req, res) => {
 const deleteShop = async (req, res) => {
 	try {
 		const id = req.params.id
-		const deletedShop = await StationeryShop.findByIdAndDelete(id)
+		const deletedShop = await Shop.findByIdAndDelete(id)
 		// console.log("Deleted shop:", deletedShop)
 		res.json(deletedShop)
 	} catch (error) {

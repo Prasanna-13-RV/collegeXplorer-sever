@@ -1,0 +1,13 @@
+const mongoose = require("mongoose")
+
+const shopSchema = new mongoose.Schema({
+	name: { type: String, required: true },
+	description: { type: String },
+	loc: { type: String },
+	products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product", default: [] }],
+	isOpened: { type: Boolean, default: true },
+})
+
+const Shop = mongoose.model("Shop", shopSchema)
+
+module.exports = Shop

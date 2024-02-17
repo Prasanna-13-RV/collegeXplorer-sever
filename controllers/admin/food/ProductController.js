@@ -1,22 +1,19 @@
-// {"productDescription": "2asdgfasdfg", "productImage": "342sdfg", "productName": "dfghjdfghj56", "productPrice": "7567", "isProductAvailable": false, "restaurant": "null"}
-
-const StationeryProduct = require("../../../modals/stationery/stationeryProduct")
+const Product = require("../../../modals/product")
 
 // Create a new product
-const createStationeryProduct = async (req, res) => {
+const createProduct = async (req, res) => {
 	try {
 		const {
 			productName,
-			shopName,
+			shop,
 			productDescription,
 			productImage,
 			productPrice,
 			isProductAvailable,
 		} = req.body
-		const newProduct = new StationeryProduct({
+		const newProduct = new Product({
 			productName: productName,
-			shopName: shopName,
-			// shopName: "65c64c914705d27e19b74a26",
+			shop: shop,
 			productDescription: productDescription,
 			productImage: productImage,
 			productPrice: productPrice,
@@ -24,7 +21,7 @@ const createStationeryProduct = async (req, res) => {
 		})
 
 		const savedProduct = await newProduct.save()
-		// console.log("product created:", savedProduct)
+		// console.log("Product created:", savedProduct)
 		res.json(savedProduct)
 	} catch (error) {
 		console.error("Error creating product:", error)
@@ -32,9 +29,9 @@ const createStationeryProduct = async (req, res) => {
 }
 
 // Read all products
-const getAllStationeryProduct = async (req, res) => {
+const getAllProducts = async (req, res) => {
 	try {
-		const products = await StationeryProduct.find().populate("shopName")
+		const products = await Product.find().populate("shop")
 		// console.log("All products:", products)
 		res.json(products)
 	} catch (error) {
@@ -43,22 +40,22 @@ const getAllStationeryProduct = async (req, res) => {
 }
 
 // Update a product by ID
-const updateStationeryProduct = async (req, res) => {
+const updateProduct = async (req, res) => {
 	try {
 		const id = req.params.id
 		const {
 			productName,
-			shopName,
+			shop,
 			productDescription,
 			productImage,
 			productPrice,
 			isProductAvailable,
 		} = req.body
-		const updatedProduct = await StationeryProduct.findByIdAndUpdate(
+		const updatedProduct = await Product.findByIdAndUpdate(
 			id,
 			{
 				productName: productName,
-				shopName: shopName,
+				shop: shop,
 				productDescription: productDescription,
 				productImage: productImage,
 				productPrice: productPrice,
@@ -75,20 +72,20 @@ const updateStationeryProduct = async (req, res) => {
 }
 
 // Delete a product by ID
-const deleteStationeryProduct = async (req, res) => {
+const deleteProduct = async (req, res) => {
 	try {
 		const id = req.params.id
-		const deletedStationeryProduct = await StationeryProduct.findByIdAndDelete(id)
-		// console.log("Deleted product:", deletedStationeryProduct)
-		res.json(deletedStationeryProduct)
+		const deletedProduct = await Product.findByIdAndDelete(id)
+		// console.log("Deleted product:", deletedProduct)
+		res.json(deletedProduct)
 	} catch (error) {
 		console.error("Error deleting product:", error)
 	}
 }
 
 module.exports = {
-	createStationeryProduct,
-	getAllStationeryProduct,
-	updateStationeryProduct,
-	deleteStationeryProduct,
+	createProduct,
+	getAllProducts,
+	updateProduct,
+	deleteProduct,
 }

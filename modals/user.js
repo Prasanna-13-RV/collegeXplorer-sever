@@ -6,7 +6,6 @@ const userSchema = new mongoose.Schema({
 	orders: [
 		{ type: mongoose.Schema.Types.ObjectId, ref: "Order", default: [] },
 	],
-	// Add other user details as needed
 })
 
 const User = mongoose.model("User", userSchema)

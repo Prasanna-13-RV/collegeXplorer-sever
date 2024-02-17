@@ -4,9 +4,9 @@ const orderSchema = new mongoose.Schema({
 	user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 	items: [
 		{
-			dish: {
+			product: {
 				type: mongoose.Schema.Types.ObjectId,
-				ref: "Dish",
+				ref: "Product",
 				required: true,
 			},
 			quantity: { type: Number, default: 1 },

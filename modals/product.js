@@ -1,10 +1,10 @@
 const mongoose = require("mongoose")
 
-const stationeryProductSchema = new mongoose.Schema({
+const productSchema = new mongoose.Schema({
 	productName: { type: String, required: true },
-	shopName: {
+	shop: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: "Restaurant",
+		ref: "Shop",
 		required: true,
 	},
 	productDescription: { type: String },
@@ -12,6 +12,6 @@ const stationeryProductSchema = new mongoose.Schema({
 	productPrice: { type: Number, required: true },
 	isProductAvailable: { type: Boolean, default: true },
 })
-const StationeryProduct = mongoose.model("StationeryProduct", stationeryProductSchema)
+const Product = mongoose.model("Product", productSchema)
 
-module.exports = StationeryProduct
+module.exports = Product
