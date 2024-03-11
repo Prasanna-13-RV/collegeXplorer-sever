@@ -13,6 +13,7 @@ router.post("/user/insert", createUser)
 
 // Read all users
 router.get("/user", getAllUsers)
+router.post("/user", getUserById)
 
 // Read single users
 router.get("/user/:id", getUserById)

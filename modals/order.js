@@ -12,7 +12,9 @@ const orderSchema = new mongoose.Schema({
 			quantity: { type: Number, default: 1 },
 		},
 	],
-	isOrderComplete: { type: Boolean, default: true },
+	isOrderComplete: { type: Boolean, default: false },
+	status: { type: String, default: "pending"},
+	isPaid: { type: Boolean, default: false },
 })
 
 const Order = mongoose.model("Order", orderSchema)
