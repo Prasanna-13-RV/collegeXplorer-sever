@@ -11,20 +11,23 @@ const createProduct = async (req, res) => {
 			productPrice,
 			isProductAvailable,
 		} = req.body
+
+
+		// Create a new product with Cloudinary image link
 		const newProduct = new Product({
-			productName: productName,
-			shop: shop,
-			productDescription: productDescription,
-			productImage: productImage,
-			productPrice: productPrice,
-			isProductAvailable: isProductAvailable,
+			productName,
+			shop,
+			productDescription,
+			productImage: uploadImageToCloudinary(image),
+			productPrice,
+			isProductAvailable,
 		})
 
 		const savedProduct = await newProduct.save()
-		// console.log("Product created:", savedProduct)
 		res.json(savedProduct)
 	} catch (error) {
 		console.error("Error creating product:", error)
+		res.status(500).json({ error: "Failed to create product" })
 	}
 }
 
