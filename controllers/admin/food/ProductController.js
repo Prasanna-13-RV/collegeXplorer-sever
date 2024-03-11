@@ -8,17 +8,17 @@ const createProduct = async (req, res) => {
 			shop,
 			productDescription,
 			productImage,
+			productType,
 			productPrice,
 			isProductAvailable,
 		} = req.body
 
-
-		// Create a new product with Cloudinary image link
 		const newProduct = new Product({
 			productName,
 			shop,
 			productDescription,
-			productImage: uploadImageToCloudinary(image),
+			productImage: productImage,
+			productType: productType,
 			productPrice,
 			isProductAvailable,
 		})
@@ -51,18 +51,20 @@ const updateProduct = async (req, res) => {
 			shop,
 			productDescription,
 			productImage,
+			productType,
 			productPrice,
 			isProductAvailable,
 		} = req.body
 		const updatedProduct = await Product.findByIdAndUpdate(
 			id,
 			{
-				productName: productName,
-				shop: shop,
-				productDescription: productDescription,
-				productImage: productImage,
-				productPrice: productPrice,
-				isProductAvailable: isProductAvailable,
+				productName : productName,
+				shop : shop,
+				productDescription : productDescription,
+				productImage : productImage,
+				productType : productType,
+				productPrice : productPrice,
+				isProductAvailable : isProductAvailable,
 			},
 			{ new: true }
 		)

@@ -3,12 +3,22 @@ const Shop = require("../../../modals/shop")
 // Create a new shop
 const createShop = async (req, res) => {
 	try {
-		const { name, description, loc, products, isOpened } = req.body
+		const {
+			name,
+			description,
+			loc,
+			shopImage,
+			shopType,
+			products,
+			isOpened,
+		} = req.body
 		const newShop = new Shop({
 			name: name,
 			description: description,
 			loc: loc,
-			// products: products,
+			shopImage: shopImage,
+			shopType: shopType,
+			products: products,
 			isOpened: isOpened,
 		})
 		const savedShop = await newShop.save()
@@ -33,7 +43,15 @@ const getAllShops = async (req, res) => {
 // Update a shop by ID
 const updateShop = async (req, res) => {
 	try {
-		const { name, description, loc, products, isOpened } = req.body
+		const {
+			name,
+			description,
+			loc,
+			shopImage,
+			shopType,
+			products,
+			isOpened,
+		} = req.body
 		const id = req.params.id
 		const updatedShop = await Shop.findByIdAndUpdate(
 			id,
@@ -41,6 +59,8 @@ const updateShop = async (req, res) => {
 				name: name,
 				description: description,
 				loc: loc,
+				shopImage: shopImage,
+				shopType: shopType,
 				products: products,
 				isOpened: isOpened,
 			},
