@@ -1,4 +1,5 @@
 const Product = require("../../../modals/product")
+const Shop = require("../../../modals/shop")
 
 // Create a new product
 const createProduct = async (req, res) => {
@@ -24,6 +25,7 @@ const createProduct = async (req, res) => {
 		})
 
 		const savedProduct = await newProduct.save()
+		await Shop.findByIdAndUpdate(shop, { $push: { products: savedProduct._id } });
 		res.json(savedProduct)
 	} catch (error) {
 		console.error("Error creating product:", error)

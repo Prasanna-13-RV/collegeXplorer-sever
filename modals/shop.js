@@ -6,7 +6,11 @@ const shopSchema = new mongoose.Schema({
 	loc: { type: String },
 	shopImage : { type: String },
 	shopType : { type: String },
-	products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product", default: [] }],
+	products: [{ 
+		type: mongoose.Schema.Types.ObjectId, 
+		ref: "Product", 
+		default: [] 
+	}],
 	isOpened: { type: Boolean, default: true },
 })
 

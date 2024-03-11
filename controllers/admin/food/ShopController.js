@@ -31,13 +31,13 @@ const createShop = async (req, res) => {
 
 // Read all shops
 const getAllShops = async (req, res) => {
-	try {
-		const shops = await Shop.find().populate("products")
-		// console.log("All shops:", shops)
-		res.json(shops)
-	} catch (error) {
-		console.error("Error retrieving shops:", error)
-	}
+    try {
+        const shops = await Shop.find().populate('products');
+        res.json(shops);
+    } catch (error) {
+        console.error("Error retrieving shops:", error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
 }
 
 // Update a shop by ID
