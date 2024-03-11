@@ -11,6 +11,7 @@ const productSchema = new mongoose.Schema({
 	productType: { type: String, required: true },
 
 	productImage: { type: String },
+	productType : { type: String },
 	productPrice: { type: Number, required: true },
 	isProductAvailable: { type: Boolean, default: true },
 })

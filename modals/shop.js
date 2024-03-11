@@ -4,7 +4,13 @@ const shopSchema = new mongoose.Schema({
 	name: { type: String, required: true },
 	description: { type: String },
 	loc: { type: String },
-	products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product", default: [] }],
+	shopImage : { type: String },
+	shopType : { type: String },
+	products: [{ 
+		type: mongoose.Schema.Types.ObjectId, 
+		ref: "Product", 
+		default: [] 
+	}],
 	isOpened: { type: Boolean, default: true },
 	type: { type: String, required: true },
 })

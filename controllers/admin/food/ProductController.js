@@ -1,4 +1,5 @@
 const Product = require("../../../modals/product")
+const Shop = require("../../../modals/shop")
 
 // Create a new product
 const createProduct = async (req, res) => {
@@ -8,23 +9,27 @@ const createProduct = async (req, res) => {
 			shop,
 			productDescription,
 			productImage,
+			productType,
 			productPrice,
 			isProductAvailable,
 		} = req.body
+
 		const newProduct = new Product({
-			productName: productName,
-			shop: shop,
-			productDescription: productDescription,
+			productName,
+			shop,
+			productDescription,
 			productImage: productImage,
-			productPrice: productPrice,
-			isProductAvailable: isProductAvailable,
+			productType: productType,
+			productPrice,
+			isProductAvailable,
 		})
 
 		const savedProduct = await newProduct.save()
-		// console.log("Product created:", savedProduct)
+		await Shop.findByIdAndUpdate(shop, { $push: { products: savedProduct._id } });
 		res.json(savedProduct)
 	} catch (error) {
 		console.error("Error creating product:", error)
+		res.status(500).json({ error: "Failed to create product" })
 	}
 }
 
@@ -48,18 +53,20 @@ const updateProduct = async (req, res) => {
 			shop,
 			productDescription,
 			productImage,
+			productType,
 			productPrice,
 			isProductAvailable,
 		} = req.body
 		const updatedProduct = await Product.findByIdAndUpdate(
 			id,
 			{
-				productName: productName,
-				shop: shop,
-				productDescription: productDescription,
-				productImage: productImage,
-				productPrice: productPrice,
-				isProductAvailable: isProductAvailable,
+				productName : productName,
+				shop : shop,
+				productDescription : productDescription,
+				productImage : productImage,
+				productType : productType,
+				productPrice : productPrice,
+				isProductAvailable : isProductAvailable,
 			},
 			{ new: true }
 		)
