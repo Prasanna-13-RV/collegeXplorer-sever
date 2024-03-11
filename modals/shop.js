@@ -6,6 +6,7 @@ const shopSchema = new mongoose.Schema({
 	loc: { type: String },
 	products: [{ type: mongoose.Schema.Types.ObjectId, ref: "Product", default: [] }],
 	isOpened: { type: Boolean, default: true },
+	type: { type: String, required: true },
 })
 
 const Shop = mongoose.model("Shop", shopSchema)
