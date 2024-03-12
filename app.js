@@ -32,15 +32,15 @@ app.get("/api", (req, res) => {
 // Restaurant
 app.use("/api", ShopRouter)
 // Product
-app.use("/api/admin", ProductRouter)
+app.use("/api", ProductRouter)
 // Order
 app.use("/api", OrderRouter)
 // User
-app.use("/api/admin", UserRouter)
+app.use("/api", UserRouter)
 // User
-app.use("/api/admin", AdminUserRoute)
+app.use("/api", AdminUserRoute)
 // Cart
-app.use("/api/admin", CartRouter)
+app.use("/api", CartRouter)
 
 app.listen(process.env.PORT, () => {
 	console.log(`Server is running in ${process.env.PORT}`)
