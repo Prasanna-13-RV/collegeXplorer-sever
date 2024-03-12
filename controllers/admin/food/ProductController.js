@@ -90,9 +90,22 @@ const deleteProduct = async (req, res) => {
 	}
 }
 
+// Read all products by shop id
+const getProductsByShopId = async (req, res) => {
+	const id = req.params.id
+	try {
+		const products = await Product.find({ shop: id })
+		// console.log("All products:", products)
+		res.json(products)
+	} catch (error) {
+		console.error("Error retrieving products:", error)
+	}
+}
+
 module.exports = {
 	createProduct,
 	getAllProducts,
 	updateProduct,
 	deleteProduct,
+	getProductsByShopId
 }

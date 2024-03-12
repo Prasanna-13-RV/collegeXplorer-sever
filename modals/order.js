@@ -12,9 +12,9 @@ const orderSchema = new mongoose.Schema({
 			quantity: { type: Number, default: 1 },
 		},
 	],
+	shopId : { type: mongoose.Schema.Types.ObjectId, ref: "Shop", required: true },
 	isOrderComplete: { type: Boolean, default: false },
 	status: { type: String, default: "pending"},
-	isPaid: { type: Boolean, default: false },
 })
 
 const Order = mongoose.model("Order", orderSchema)

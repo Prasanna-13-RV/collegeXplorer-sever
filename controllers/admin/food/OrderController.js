@@ -1,18 +1,22 @@
 const Order = require("../../../modals/order")
+const User = require("../../../modals/user")
 
 // Create a new order
 const createOrder = async (req, res) => {
 	try {
-		const { user, items } = req.body
+		const { user, items, shopId } = req.body
 		const newOrder = new Order({
 			user: user,
 			items: items.map((order) => ({
 				product: order.product,
 				quantity: order.quantity,
 			})),
+			shopId : shopId,
 		})
 
 		const savedOrder = await newOrder.save()
+
+		await User.findByIdAndUpdate(user, { $push: { orders: savedOrder._id } });
 		// console.log("Order created:", savedOrder)
 		res.json(savedOrder)
 	} catch (error) {
@@ -34,11 +38,32 @@ const getAllOrders = async (req, res) => {
 	}
 }
 
-// Update an order by ID
+const getAllOrdersForShop = async (req, res) => {
+    try {
+        const shopId = req.params.shopId;
+
+        if (!shopId) {
+            return res.status(400).json({ error: "Shop ID is required" });
+        }
+
+        const orders = await Order.find({ shopId })
+            .populate("user")
+            .populate("items.product");
+
+        res.json(orders);
+    } catch (error) {
+        console.error("Error retrieving orders:", error);
+        res.status(500).json({ error: "Internal server error" });
+    }
+};
+
+
+// Update an order status by ID
 const updateOrder = async (req, res) => {
 	try {
-		const { user, items } = req.body
+		const { user, items, status } = req.body
 		const id = req.params.id
+		console.log(req.body, id);
 		const updatedOrder = await Order.findByIdAndUpdate(
 			id,
 			{
@@ -47,6 +72,8 @@ const updateOrder = async (req, res) => {
 					product: order.product,
 					quantity: order.quantity,
 				})),
+				isOrderComplete: false,
+				status: status,
 			},
 			{ new: true }
 		)
@@ -73,6 +100,7 @@ const deleteOrder = async (req, res) => {
 module.exports = {
 	createOrder,
 	getAllOrders,
+	getAllOrdersForShop,
 	updateOrder,
 	deleteOrder,
 }

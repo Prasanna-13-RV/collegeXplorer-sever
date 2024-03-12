@@ -14,6 +14,7 @@ const ShopRouter = require("./routes/admin/food/ShopRoute")
 const ProductRouter = require("./routes/admin/food/ProductRoute")
 const OrderRouter = require("./routes/admin/food/OrderRoute")
 const UserRouter = require("./routes/admin/food/UserRoute")
+const AdminUserRoute = require("./routes/admin/food/AdminUserRoute")
 const CartRouter = require("./routes/admin/food/CartRoute")
 
 const morgan = require("morgan")
@@ -31,13 +32,15 @@ app.get("/api", (req, res) => {
 // Restaurant
 app.use("/api", ShopRouter)
 // Product
-app.use("/api/admin", ProductRouter)
+app.use("/api", ProductRouter)
 // Order
 app.use("/api", OrderRouter)
 // User
 app.use("/api", UserRouter)
+// User
+app.use("/api", AdminUserRoute)
 // Cart
-app.use("/api/admin", CartRouter)
+app.use("/api", CartRouter)
 
 app.listen(process.env.PORT, () => {
 	console.log(`Server is running in ${process.env.PORT}`)
