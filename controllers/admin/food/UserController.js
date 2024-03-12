@@ -3,11 +3,13 @@ const User = require("../../../modals/user")
 // Create a new user
 const createUser = async (req, res) => {
 	try {
-		const { name, email, orders } = req.body
+		const {  email,password } = req.body
+		console.log(req.body);
 		const newUser = new User({
-			name: name,
+			name: email.split("@")[0],
 			email: email,
-			orders: orders,
+			password:password,
+			orders: [],
 		})
 
 		const savedUser = await newUser.save()
@@ -34,10 +36,16 @@ const getAllUsers = async (req, res) => {
 // Read a user by ID
 const getUserById = async (req, res) => {
 	try {
-		const id = req.params.id
-		const user = await User.findById(id).populate("orders")
+		const {email,password} = req.body
+		const user = await User.findOne({email:email}).populate("orders")
+		if(user.password == password){
+			res.json(user)
+		}
+		else {
+			throw error
+		}
 		// console.log("User by ID:", user)
-		res.json(user)
+		
 	} catch (error) {
 		console.error("Error retrieving user by ID:", error)
 		throw error

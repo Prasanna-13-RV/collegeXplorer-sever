@@ -30,11 +30,11 @@ app.get("/api", (req, res) => {
 
 // ADMIN
 // Restaurant
-app.use("/api/admin", ShopRouter)
+app.use("/api", ShopRouter)
 // Product
 app.use("/api/admin", ProductRouter)
 // Order
-app.use("/api/admin", OrderRouter)
+app.use("/api", OrderRouter)
 // User
 app.use("/api/admin", UserRouter)
 // User

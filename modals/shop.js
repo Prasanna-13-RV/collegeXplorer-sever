@@ -12,6 +12,7 @@ const shopSchema = new mongoose.Schema({
 		default: [] 
 	}],
 	isOpened: { type: Boolean, default: true },
+	type: { type: String, required: true },
 })
 
 const Shop = mongoose.model("Shop", shopSchema)
