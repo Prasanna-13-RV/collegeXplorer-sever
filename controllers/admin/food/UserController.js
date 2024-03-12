@@ -35,6 +35,7 @@ const getAllUsers = async (req, res) => {
 
 // Read a user by ID
 const getUserById = async (req, res) => {
+	
 	try {
 		const {email,password} = req.body
 		const user = await User.findOne({email:email}).populate("orders")
