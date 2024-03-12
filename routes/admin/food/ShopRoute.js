@@ -3,6 +3,7 @@ const router = require("express").Router()
 const {
 	createShop,
 	getAllShops,
+	getShopById,
 	updateShop,
 	deleteShop,
 } = require("../../../controllers/admin/food/ShopController")
@@ -12,6 +13,9 @@ router.post("/shop/insert", createShop)
 
 // Read all shops
 router.get("/shop", getAllShops)
+
+// Read shop by id
+router.get("/shop/:id", getShopById)
 
 // Update a shop by ID
 router.put("/shop/update/:id", updateShop)

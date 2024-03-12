@@ -40,6 +40,18 @@ const getAllShops = async (req, res) => {
     }
 }
 
+// Read shop by id
+const getShopById = async (req, res) => {
+	const id = req.params.id
+    try {
+        const shops = await Shop.findById(id).populate('products');
+        res.json(shops);
+    } catch (error) {
+        console.error("Error retrieving shops:", error);
+        res.status(500).json({ error: 'Internal Server Error' });
+    }
+}
+
 // Update a shop by ID
 const updateShop = async (req, res) => {
 	try {
@@ -88,6 +100,7 @@ const deleteShop = async (req, res) => {
 module.exports = {
 	createShop,
 	getAllShops,
+	getShopById,
 	updateShop,
 	deleteShop,
 }
