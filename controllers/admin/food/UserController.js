@@ -3,12 +3,13 @@ const User = require("../../../modals/user")
 // Create a new user
 const createUser = async (req, res) => {
 	try {
-		const {  email,password } = req.body
+		const {  email,password ,name,registerNumber} = req.body
 		console.log(req.body);
 		const newUser = new User({
-			name: email.split("@")[0],
+			name: name,
 			email: email,
 			password:password,
+			registerNumber:registerNumber,
 			orders: [],
 		})
 
