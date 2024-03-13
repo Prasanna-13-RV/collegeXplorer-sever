@@ -7,7 +7,7 @@ const {
 	deleteProduct,
 	getProductsByShopId,
 	getProductById
-} = require("../../../controllers/admin/food/ProductController")
+} = require("../controllers/ProductController")
 
 // Create a new product
 router.post("/product/insert", createProduct)

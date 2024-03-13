@@ -8,14 +8,14 @@ const app = express()
 const dbConnect = require("./dbConnect")
 
 // routers
-// ADMIN
-// Food
-const ShopRouter = require("./routes/admin/food/ShopRoute")
-const ProductRouter = require("./routes/admin/food/ProductRoute")
-const OrderRouter = require("./routes/admin/food/OrderRoute")
-const UserRouter = require("./routes/admin/food/UserRoute")
-const AdminUserRoute = require("./routes/admin/food/AdminUserRoute")
-const CartRouter = require("./routes/admin/food/CartRoute")
+const ShopRouter = require("./routes/ShopRoute")
+const ProductRouter = require("./routes/ProductRoute")
+const OrderRouter = require("./routes/OrderRoute")
+const UserRouter = require("./routes/UserRoute")
+const CartRouter = require("./routes/CartRoute")
+const AdminUserRoute = require("./routes/AdminUserRoute")
+const TeacherRouter = require("./routes/TeacherRoute")
+const AttendanceRouter = require("./routes/AttendanceRoute")
 
 const morgan = require("morgan")
 
@@ -40,6 +40,10 @@ app.use("/api", UserRouter)
 app.use("/api", AdminUserRoute)
 // Cart
 app.use("/api", CartRouter)
+// Teacher
+app.use("/api", TeacherRouter)
+// Attendance
+app.use("/api", AttendanceRouter)
 
 app.listen(process.env.PORT, () => {
 	console.log(`Server is running in ${process.env.PORT}`)

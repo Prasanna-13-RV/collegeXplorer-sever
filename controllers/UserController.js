@@ -1,14 +1,19 @@
-const User = require("../../../modals/user")
+const bcrypt = require("bcrypt")
+const User = require("../modals/user")
 
 // Create a new user
 const createUser = async (req, res) => {
 	try {
-		const {  email,password } = req.body
-		console.log(req.body);
+		const { name, registerNumber, className, password, email } = req.body
+
+		const hashedPassword = await bcrypt.hash(password, 10)
+
 		const newUser = new User({
-			name: email.split("@")[0],
+			name: name,
+			registerNumber: registerNumber,
+			className: className,
 			email: email,
-			password:password,
+			password: hashedPassword,
 			orders: [],
 		})
 
@@ -36,16 +41,14 @@ const getAllUsers = async (req, res) => {
 // Read a user by ID
 const getUserById = async (req, res) => {
 	try {
-		const {email,password} = req.body
-		const user = await User.findOne({email:email}).populate("orders")
-		if(user.password == password){
+		const { email, password } = req.body
+		const user = await User.findOne({ email: email }).populate("orders")
+		if (user.password == password) {
 			res.json(user)
-		}
-		else {
+		} else {
 			throw error
 		}
 		// console.log("User by ID:", user)
-		
 	} catch (error) {
 		console.error("Error retrieving user by ID:", error)
 		throw error
@@ -56,12 +59,15 @@ const getUserById = async (req, res) => {
 const updateUser = async (req, res) => {
 	try {
 		const id = req.params.id
-		const { name, email, orders } = req.body
+		const { name, registerNumber, className, email, orders } = req.body
 		const updatedUser = await User.findByIdAndUpdate(
 			id,
 			{
 				name: name,
+				registerNumber: registerNumber,
+				className: className,
 				email: email,
+				password: hashedPassword,
 				orders: orders,
 			},
 			{

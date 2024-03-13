@@ -1,5 +1,5 @@
-const Product = require("../../../modals/product")
-const Shop = require("../../../modals/shop")
+const Product = require("../modals/product")
+const Shop = require("../modals/shop")
 
 // Create a new product
 const createProduct = async (req, res) => {

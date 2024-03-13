@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt")
-const Shop = require("../../../modals/shop")
-const AdminUser = require("../../../modals/adminUser")
+const Shop = require("../modals/shop")
+const AdminUser = require("../modals/adminUser")
 
 const createAdminUser = async (req, res) => {
 	try {
@@ -26,6 +26,9 @@ const createAdminUser = async (req, res) => {
 		//        "shopName": "Hello",
 		//         "shopType": "stationery"
 
+		if(adminConfirmPassword !== adminPassword) {
+			return res.status(400).json({ error: "Passwords do not match" })
+		}
 		// Hash the password
 		const hashedPassword = await bcrypt.hash(adminPassword, 10)
 

@@ -6,7 +6,7 @@ const {
 	getUserById,
 	updateUser,
 	deleteUser,
-} = require("../../../controllers/admin/food/UserController")
+} = require("../controllers/UserController")
 
 // Create a new user
 router.post("/user/insert", createUser)

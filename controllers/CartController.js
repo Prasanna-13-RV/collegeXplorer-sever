@@ -1,4 +1,4 @@
-const Cart = require("../../../modals/cart")
+const Cart = require("../modals/cart")
 
 // Create a new cart
 const createCart = async (req, res) => {

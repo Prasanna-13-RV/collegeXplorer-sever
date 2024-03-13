@@ -1,4 +1,4 @@
-const Shop = require("../../../modals/shop")
+const Shop = require("../modals/shop")
 
 // Create a new shop
 const createShop = async (req, res) => {
