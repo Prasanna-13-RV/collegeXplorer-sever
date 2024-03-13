@@ -11,6 +11,7 @@ const createUser = async (req, res) => {
 		const newUser = new User({
 			name: name,
 			registerNumber: registerNumber,
+			userImage : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
 			className: className,
 			email: email,
 			password: hashedPassword,
@@ -41,13 +42,23 @@ const getAllUsers = async (req, res) => {
 // Read a user by ID
 const getUserById = async (req, res) => {
 	try {
-		const { email, password } = req.body
-		const user = await User.findOne({ email: email }).populate("orders")
-		if (user.password == password) {
-			res.json(user)
-		} else {
-			throw error
-		}
+		const id = req.params.id
+		const user = await User.findOne({ id }).populate("orders")
+		res.json(user)
+		// console.log("User by ID:", user)
+	} catch (error) {
+		console.error("Error retrieving user by ID:", error)
+		throw error
+	}
+}
+
+const getUserByRegisterNumber = async (req, res) => {
+	try {
+		const registerNumber = req.params.registerNumber
+		const user = await User.findOne({
+			registerNumber: registerNumber,
+		}).populate("orders")
+		res.json(user)
 		// console.log("User by ID:", user)
 	} catch (error) {
 		console.error("Error retrieving user by ID:", error)
@@ -99,6 +110,7 @@ module.exports = {
 	createUser,
 	getAllUsers,
 	getUserById,
+	getUserByRegisterNumber,
 	updateUser,
 	deleteUser,
 }

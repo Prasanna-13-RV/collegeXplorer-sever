@@ -4,6 +4,7 @@ const {
 	createUser,
 	getAllUsers,
 	getUserById,
+	getUserByRegisterNumber,
 	updateUser,
 	deleteUser,
 } = require("../controllers/UserController")
@@ -13,10 +14,12 @@ router.post("/user/insert", createUser)
 
 // Read all users
 router.get("/user", getAllUsers)
-router.post("/user", getUserById)
 
 // Read single users
-router.get("/user/:id", getUserById)
+router.get("/user/id/:id", getUserById)
+
+// Read a user by register number
+router.get("/user/registernumber/:registerNumber", getUserByRegisterNumber)
 
 // Update a user by ID
 router.put("/user/update/:id", updateUser)
