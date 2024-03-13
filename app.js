@@ -28,7 +28,6 @@ app.get("/api", (req, res) => {
 	res.send("Hello World")
 })
 
-// ADMIN
 // Restaurant
 app.use("/api", ShopRouter)
 // Product
