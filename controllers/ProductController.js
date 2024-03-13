@@ -1,5 +1,5 @@
-const Product = require("../../../modals/product")
-const Shop = require("../../../modals/shop")
+const Product = require("../modals/product")
+const Shop = require("../modals/shop")
 
 // Create a new product
 const createProduct = async (req, res) => {
@@ -71,6 +71,8 @@ const updateProduct = async (req, res) => {
 			{ new: true }
 		)
 
+		console.log(req.body);
+
 		// console.log("Updated product:", updatedProduct)
 		res.json(updatedProduct)
 	} catch (error) {
@@ -102,10 +104,22 @@ const getProductsByShopId = async (req, res) => {
 	}
 }
 
+// Read product by id
+const getProductById = async (req, res) => {
+	const id = req.params.id
+	try {
+		const product = await Product.findById(id)
+		res.json(product)
+	} catch (error) {
+		console.error("Error retrieving products:", error)
+	}
+}
+
 module.exports = {
 	createProduct,
 	getAllProducts,
 	updateProduct,
 	deleteProduct,
-	getProductsByShopId
+	getProductsByShopId,
+	getProductById
 }

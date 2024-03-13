@@ -5,14 +5,18 @@ const {
 	getAllProducts,
 	updateProduct,
 	deleteProduct,
-	getProductsByShopId
-} = require("../../../controllers/admin/food/ProductController")
+	getProductsByShopId,
+	getProductById
+} = require("../controllers/ProductController")
 
 // Create a new product
 router.post("/product/insert", createProduct)
 
 // Read all products
 router.get("/product", getAllProducts)
+
+// Read product by id
+router.get("/product/:id", getProductById)
 
 // Read all products by shop id
 router.get("/product/shop/:id", getProductsByShopId)

@@ -5,7 +5,7 @@ const {
 	getAllCarts,
 	updateCart,
 	deleteCart,
-} = require("../../../controllers/admin/food/CartController")
+} = require("../controllers/CartController")
 
 // Create a new cart
 router.post("/cart/insert", createCart)

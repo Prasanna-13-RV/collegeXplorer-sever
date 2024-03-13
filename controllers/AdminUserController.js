@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt")
-const Shop = require("../../../modals/shop")
-const AdminUser = require("../../../modals/adminUser")
+const Shop = require("../modals/shop")
+const AdminUser = require("../modals/adminUser")
 
 const createAdminUser = async (req, res) => {
 	try {
@@ -26,6 +26,9 @@ const createAdminUser = async (req, res) => {
 		//        "shopName": "Hello",
 		//         "shopType": "stationery"
 
+		if(adminConfirmPassword !== adminPassword) {
+			return res.status(400).json({ error: "Passwords do not match" })
+		}
 		// Hash the password
 		const hashedPassword = await bcrypt.hash(adminPassword, 10)
 
@@ -35,7 +38,7 @@ const createAdminUser = async (req, res) => {
 			description: shopDescription,
 			loc: shopLoc,
 			shopImage: shopImage,
-			shopType: shopType,
+			type: shopType,
 		})
 		const savedShop = await newShop.save()
 
@@ -63,7 +66,10 @@ const loginAdminUser = async (req, res) => {
 	try {
 		const user = await AdminUser.findOne({ adminEmail: emailLogin })
 
-		if (!user || !(await bcrypt.compare(passwordLogin, user.adminPassword))) {
+		if (
+			!user ||
+			!(await bcrypt.compare(passwordLogin, user.adminPassword))
+		) {
 			return res.status(401).json({ error: "Invalid email or password" })
 		}
 
@@ -85,5 +91,5 @@ const loginAdminUser = async (req, res) => {
 
 module.exports = {
 	createAdminUser,
-	loginAdminUser
+	loginAdminUser,
 }

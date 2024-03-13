@@ -1,5 +1,5 @@
-const Order = require("../../../modals/order");
-const User = require("../../../modals/user");
+const Order = require("../modals/order")
+const User = require("../modals/user")
 
 // Create a new order
 const createOrder = async (req, res) => {

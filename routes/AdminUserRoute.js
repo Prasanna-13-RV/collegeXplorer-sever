@@ -1,4 +1,4 @@
-const { createAdminUser, loginAdminUser } = require("../../../controllers/admin/food/AdminUserController")
+const { createAdminUser, loginAdminUser } = require("../controllers/AdminUserController")
 
 const router = require("express").Router()
 

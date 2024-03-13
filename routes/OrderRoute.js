@@ -7,7 +7,7 @@ const {
 	getAllOrdersForUser,
 	updateOrder,
 	deleteOrder,
-} = require("../../../controllers/admin/food/OrderController")
+} = require("../controllers/OrderController")
 
 // Create a new order
 router.post("/order/insert", createOrder)
