@@ -30,7 +30,7 @@ router.get("/user/registernumber/:registerNumber", getUserByRegisterNumber)
 router.put("/user/update/:id", updateUser)
 
 // Update a user for className
-router.put("/user/update/className/:id", updateClassForUser)
+router.put("/user/update/classname/:id", updateClassForUser)
 
 // Delete a user by ID
 router.delete("/user/delete/:id", deleteUser)
