@@ -3,7 +3,10 @@ const Teacher = require("../modals/teacher")
 
 const createTeacher = async (req, res) => {
 	try {
-		const { name, email, password, className } = req.body
+		const { name, email, password, confirmPassword, className } = req.body
+		if (password !== confirmPassword) {
+			return res.status(400).json({ message: "Passwords do not match" })
+		}
         const hashedPassword = await bcrypt.hash(password, 10)
 		const newTeacher = await Teacher.create({
 			name: name,
