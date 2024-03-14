@@ -9,7 +9,7 @@ const createSingleAttendance = async (req, res) => {
             status: status,
             location: location,
             image: image,
-            time: time,
+            time: time,  
         })
         const newAttendance = await attendance.save()
         res.json(newAttendance)
