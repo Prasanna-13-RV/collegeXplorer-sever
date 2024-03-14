@@ -11,7 +11,8 @@ const createUser = async (req, res) => {
 		const newUser = new User({
 			name: name,
 			registerNumber: registerNumber,
-			userImage : "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+			userImage:
+				"https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
 			className: className,
 			email: email,
 			password: hashedPassword,
@@ -93,6 +94,27 @@ const updateUser = async (req, res) => {
 	}
 }
 
+const updateClassForUser = async (req, res) => {
+	try {
+		const id = req.params.id
+		const { className } = req.body
+		const updated = await User.findByIdAndUpdate(
+			id,
+			{
+				className: className,
+			},
+			{
+				new: true,
+			}
+		)
+		// console.log("Updated user:", updatedUser)
+		res.json(updated)
+	} catch (error) {
+		console.error("Error updating user:", error)
+		throw error
+	}
+}
+
 // Delete a user by ID
 const deleteUser = async (req, res) => {
 	try {
@@ -112,5 +134,6 @@ module.exports = {
 	getUserById,
 	getUserByRegisterNumber,
 	updateUser,
+	updateClassForUser,
 	deleteUser,
 }

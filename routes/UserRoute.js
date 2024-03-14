@@ -6,6 +6,7 @@ const {
 	getUserById,
 	getUserByRegisterNumber,
 	updateUser,
+	updateClassForUser,
 	deleteUser,
 } = require("../controllers/UserController")
 
@@ -23,6 +24,9 @@ router.get("/user/registernumber/:registerNumber", getUserByRegisterNumber)
 
 // Update a user by ID
 router.put("/user/update/:id", updateUser)
+
+// Update a user for className
+router.put("/user/update/className/:id", updateClassForUser)
 
 // Delete a user by ID
 router.delete("/user/delete/:id", deleteUser)
