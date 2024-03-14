@@ -8,6 +8,7 @@ const {
 	updateUser,
 	updateClassForUser,
 	deleteUser,
+	getUserByEmail,
 } = require("../controllers/UserController")
 
 // Create a new user
@@ -18,6 +19,9 @@ router.get("/user", getAllUsers)
 
 // Read single users
 router.get("/user/id/:id", getUserById)
+
+// Read single users
+router.get("/user/id/:email", getUserByEmail)
 
 // Read a user by register number
 router.get("/user/registernumber/:registerNumber", getUserByRegisterNumber)

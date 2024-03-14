@@ -53,6 +53,19 @@ const getUserById = async (req, res) => {
 	}
 }
 
+// Read a user by Email
+const getUserByEmail = async (req, res) => {
+	try {
+		const email = req.params.email
+		const user = await User.findOne({ email }).populate("orders")
+		res.json(user)
+		// console.log("User by ID:", user)
+	} catch (error) {
+		console.error("Error retrieving user by ID:", error)
+		throw error
+	}
+}
+
 const getUserByRegisterNumber = async (req, res) => {
 	try {
 		const registerNumber = req.params.registerNumber
@@ -132,6 +145,7 @@ module.exports = {
 	createUser,
 	getAllUsers,
 	getUserById,
+	getUserByEmail,
 	getUserByRegisterNumber,
 	updateUser,
 	updateClassForUser,
