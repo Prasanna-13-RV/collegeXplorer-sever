@@ -114,6 +114,7 @@ const updateClassForUser = async (req, res) => {
 	try {
 		const id = req.params.id
 		const { className } = req.body
+		console.log(id, className);
 		const updated = await User.findByIdAndUpdate(
 			id,
 			{
