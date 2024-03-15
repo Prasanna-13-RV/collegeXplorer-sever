@@ -4,7 +4,7 @@ const User = require("../modals/user")
 // Create a new user
 const createUser = async (req, res) => {
 	try {
-		const { name, registerNumber, className, password, email } = req.body
+		const { name, registerNumber,  password, email } = req.body
 
 		const hashedPassword = await bcrypt.hash(password, 10)
 
@@ -42,6 +42,7 @@ const getAllUsers = async (req, res) => {
 
 // Read a user by ID
 const getUserById = async (req, res) => {
+	
 	try {
 		const id = req.params.id
 		const user = await User.findOne({ id }).populate("orders")
@@ -51,12 +52,14 @@ const getUserById = async (req, res) => {
 		console.error("Error retrieving user by ID:", error)
 		throw error
 	}
+
 }
 
 // Read a user by Email
 const getUserByEmail = async (req, res) => {
 	try {
-		const email = req.params.email
+		const {email,password} = req.body
+		console.log("hi")
 		const user = await User.findOne({ email }).populate("orders")
 		res.json(user)
 		// console.log("User by ID:", user)
