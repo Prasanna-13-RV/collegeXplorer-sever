@@ -22,7 +22,7 @@ router.get("/user", getAllUsers)
 router.get("/user/id/:id", getUserById)
 
 // Read single users
-router.get("/user/id/:email", getUserByEmail)
+router.post("/user/login", getUserByEmail)
 
 // Read a user by register number
 router.get("/user/registernumber/:registerNumber", getUserByRegisterNumber)

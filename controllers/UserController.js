@@ -52,13 +52,14 @@ const getUserById = async (req, res) => {
 		console.error("Error retrieving user by ID:", error)
 		throw error
 	}
-	
+
 }
 
 // Read a user by Email
 const getUserByEmail = async (req, res) => {
 	try {
-		const email = req.params.email
+		const {email,password} = req.body
+		console.log("hi")
 		const user = await User.findOne({ email }).populate("orders")
 		res.json(user)
 		// console.log("User by ID:", user)

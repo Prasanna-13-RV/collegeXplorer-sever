@@ -2,9 +2,9 @@ const Attendance = require("../modals/attendance")
 
 const createSingleAttendance = async (req, res) => {
     try {
-        const { userId, status, location, image } = req.body
+        const { user, status, location, image } = req.body
         const attendance = new Attendance({
-            user: userId,
+            user: user,
             status: status,
             location: location,
             image: image,
