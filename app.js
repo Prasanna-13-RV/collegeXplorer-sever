@@ -16,6 +16,7 @@ const CartRouter = require("./routes/CartRoute")
 const AdminUserRoute = require("./routes/AdminUserRoute")
 const TeacherRouter = require("./routes/TeacherRoute")
 const AttendanceRouter = require("./routes/AttendanceRoute")
+const NotesRouter = require("./routes/NotesRoute")
 
 const morgan = require("morgan")
 
@@ -44,6 +45,8 @@ app.use("/api", CartRouter)
 app.use("/api", TeacherRouter)
 // Attendance
 app.use("/api", AttendanceRouter)
+// Notes
+app.use("/api", NotesRouter)
 
 app.listen(process.env.PORT, () => {
 	console.log(`Server is running in ${process.env.PORT}`)
