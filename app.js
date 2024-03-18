@@ -1,12 +1,8 @@
 require("dotenv").config()
-
 const express = require("express")
 const cors = require("cors")
-
 const app = express()
-
 const dbConnect = require("./dbConnect")
-
 // routers
 const ShopRouter = require("./routes/ShopRoute")
 const ProductRouter = require("./routes/ProductRoute")
