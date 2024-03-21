@@ -54,6 +54,8 @@ const getAllAttendanceForSingleClassName = async (req, res) => {
         })
         .exec();
 
+        console.log(attendance, "attendance");
+
         const filteredAttendance = attendance.filter(record => {
             return record.user !== null && record.user !== undefined;
         });
